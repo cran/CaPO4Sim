@@ -1,10 +1,14 @@
 # useful datas for videos
 video_data <- data.frame(
-  caption = c("Calcium", "Phosphate", "Parathyroid hormone"),
+  caption = c(
+    "Calcium intake, excretion, reabsorption and storage",
+    "Phosphate intake, excretion, reabsorption and storage",
+    "Parathyroid hormone synthesis and regulation"
+  ),
   src = c(
-    "https://youtube.com/embed/9x2QFK6_IkQ",
-    "https://youtube.com/embed/1eh5VF6poWo",
-    "https://youtube.com/embed/5OEenuXMjyg"
+    "https://www.youtube.com/embed/O5QVhiUNwUk",
+    "https://www.youtube.com/embed/i1ZhOAKAWHg",
+    "https://www.youtube.com/embed/_Ol9-odgSxM"
   )
 )
 
@@ -24,6 +28,8 @@ body <- dashboardBody(
   withMathJax(),
   use_bs_popover(),
   use_bs_tooltip(),
+
+  extendShinyjs(script = "js/fullscreen.js", functions = c("toggleFullScreen")),
 
   # shinyEffects
   setShadow(id = "boxPlot"),

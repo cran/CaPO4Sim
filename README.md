@@ -1,9 +1,8 @@
-# CaPO4Sim, the Virtual Physiology Simulator
-[![Travis build status](https://travis-ci.com/DivadNojnarg/CaPO4Sim.svg?token=wk4LByQczpy1WzofyA7q&branch=master)](https://travis-ci.com/DivadNojnarg/CaPO4Sim)
+# CaPO4Sim, the Virtual Physiology Simulator <img src="man/figures/CaPO4sim_hex.svg" width=200 align="right" />
+[![R-CMD-check](https://github.com/DivadNojnarg/CaPO4Sim/workflows/R-CMD-check/badge.svg)](https://github.com/DivadNojnarg/CaPO4Sim/actions)
 [![CRAN status](https://www.r-pkg.org/badges/version/CaPO4Sim)](https://cran.r-project.org/package=CaPO4Sim)
 
 This apps were developed in the [Interface Group](https://interfacegroup.ch).
-![](https://lh5.googleusercontent.com/p/AF1QipMbcic6JUV3C8MuraR0BWq7hV-T-I4Y7QuAliz_=w160-h160-k-no)
 
 ## Installation
 
@@ -48,14 +47,14 @@ The Bootstrap 3 version will not be updated anymore but can be accessed [here](h
 *david.granjon_at_uzh.ch*
 
 ## **Staff** 
-+ *Project manager*: [Dr. Diane de Zélicourt, Prof. Vartan Kurtcuoglu and Dr. David Granjon](http://interfacegroup.ch/people/)
++ *Project manager*: [Dr. Diane de Zélicourt, Prof. Vartan Kurtcuoglu and Dr. David Granjon](https://interfacegroup.ch/people/)
 + *Experts in Physiology*: 
-  - [Prof. François Verrey](https://www.physiol.uzh.ch/en/research/institutegroups/EpithelialTransports/TeamMembers/FVerrey.html),
-  - [Prof. Olivier Bonny](https://www.unil.ch/dpt/fr/home/menuinst/recherche/groupe-bonny.html),
+  - Prof. François Verrey,
+  - [Prof. Olivier Bonny](https://www.unil.ch/dpt/home/menuinst/groupe-de-recherche/groupe-bonny.html),
   - [Prof. Bernard Rossier](https://hset.org/organization/team/),
   - [Prof. Carsten Wagner](https://www.physiol.uzh.ch/en/research/institutegroups/Acidbasetransport/Grwagner/CWagner.html)
-+ *Graphic designer*: [Tara von Grebel and Dr. David Granjon](https://www.uzh.ch/id/cl/iframe/org/index.php?id=tg)
-+ *Animation*: [Janine Meyer](https://www.uzh.ch/id/cl/iframe/org/index.php?id=jnm)
++ *Graphic designer*: Tara von Grebel and Dr. David Granjon
++ *Animation*: Janine Meyer
 + *Model developer*: [Dr. David Granjon](https://divadnojnarg.github.io)
 + *Web/R developer*: Dr. David Granjon
 + *Server management*: Dr. David Granjon

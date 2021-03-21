@@ -9,7 +9,8 @@ plotBoxUi <- function(id) {
 
   ns <- NS(id)
 
-  boxTag <- shinydashboardPlus::boxPlus(
+  boxTag <- shinydashboardPlus::box(
+    id = ns("boxPlot"),
     width = 12,
     solidHeader = FALSE,
     status = NULL,
@@ -85,7 +86,6 @@ plotBoxUi <- function(id) {
   # the box is actually wrapped in a column tag. Need to take the first child
   boxTag[[2]]$children[[1]] <- tagAppendAttributes(
     boxTag[[2]]$children[[1]],
-    id = "boxPlot",
     style = "overflow-y: auto;"
   )
 
@@ -129,7 +129,7 @@ plotBox <- function(input, output, session, diseases, help, isMobile) {
 
         current_sim <- extract_running_sim(diseases)
 
-        sliderChoices <- if (diseases$php1() | help()) c(20, 100, 200) else c(0.5, 0.1, 0)
+        sliderChoices <- if (diseases$php1() | help()) c(20, 100, 200) else c(0, 0.1, 0.5)
         sliderValue <- if (help()) {
           100
         } else {
@@ -149,11 +149,11 @@ plotBox <- function(input, output, session, diseases, help, isMobile) {
         sliderTag <- shinyWidgets::sliderTextInput(
           inputId = ns(sliderId),
           label = if (diseases$php1() | help()) {
-            "PTH mRNA synthesis fold increase"
+            "Normalized PTH mRNA synthesis (baseline=1)"
           } else if (diseases$hypopara()) {
-            "PTH mRNA synthesis fold decrease"
+            "Normalized PTH mRNA synthesis (baseline=1)"
           } else if (diseases$hypoD3()) {
-            "25(OH)D stock"
+            "Normalized 25(OH)D stock (baseline=1)"
           },
           choices = sliderChoices,
           selected = sliderValue,
@@ -211,36 +211,47 @@ plotBox <- function(input, output, session, diseases, help, isMobile) {
             "<b>1) Regulatory mechanisms:</b>", br(),
             img(src = "rintrojs_help/node_help.svg",
                 height = "70px", width = "70px"),
-            "Organs involved in Ca and \\(P_i\\) metabolism", br(),
+            "Organs involved in \\(Ca\\) and \\(P_i\\) metabolism", br(),
             img(src = "rintrojs_help/regulation_help.svg",
-                height = "60px", width = "60px"),
+                height = "60px", width = "70px"),
             "Regulatory hormones and ions", br(),
             img(src = "rintrojs_help/dashed_arrow_help_promotor.svg",
-                height = "70px", width = "70px"),
+                height = "40px", width = "70px"),
             "Promotor", br(),
             img(src = "rintrojs_help/dashed_arrow_help_inhibitor.svg",
-                height = "70px", width = "70px"),
+                height = "40px", width = "70px"),
             "Inhibitor", br(),
             img(src = "rintrojs_help/dashed_arrow_help.svg",
-                height = "70px", width = "70px"),
+                height = "40px", width = "70px"),
             "Mixed effect or opposite effects on \\([Ca]_p\\) and \\([P_i]_p\\).
-            Click on the detailed cellular view to see individual actions", br(), br(),
+            Click on the detailed cellular view to see individual actions", br(), br(), br(),
             "<b>2) FLuxes and concentrations:</b>", br(),
             "\\([...]_p\\)", "Plasma concentrations", br(),
             img(src = "rintrojs_help/arrow_help.svg",
-                height = "70px", width = "70px"),
-            "Ca and \\(P_i\\) fluxes", br(), br(),
+                height = "40px", width = "70px"),
+            "\\(Ca\\) and \\(P_i\\) fluxes", br(), br(),br(),
             "<b>3) Explore <mark><font color=\"#FF0000\">regulatory pathways</font></mark>:</b>", br(),
             tags$ul(
               tags$li(
                 HTML(
                   paste(
-                    "<b><mark><font color=\"#FF0000\">Mouse
-                    over</font></mark></b> the organs to visualize detailed
-                    intra-cellular regulatory pathways</b>"
+                    "<b><mark><font color=\"#FF0000\">Double click</font></mark></b> on the ",
+                    "intestine", img(src = "CaPO4_network/intestine.svg",
+                                     style="vertical-align:bottom; width:25px; height:45px; object-fit: cover; object-position: 50% 0%;"),
+                    ", kidney",  img(src = "CaPO4_network/kidney_zoom1.svg",
+                                     style="vertical-align:bottom; width:25px; height:45px; object-fit: cover; object-position: 100% 0%;"),
+                    ", parathyroid gland", img(src = "CaPO4_network/parathyroid_gland.svg",
+                                               style="vertical-align:middle; width:40px; height:35px; object-fit: cover; object-position: 50% 0%;"),
+                    " or bone",  img(src = "CaPO4_network/bone.svg",
+                                     style="vertical-align:middle; width:40px; height:35px; object-fit: cover; object-position: 50% 0%;"),
+                    br(), "to visualize detailed intra-cellular regulatory pathways</b>"
+#DDZ                    "<b><mark><font color=\"#FF0000\">Mouse
+#DDZ                    over</font></mark></b> the organs to visualize detailed
+#DDZ                    intra-cellular regulatory pathways</b>"
                   )
                 )
               ),
+              br(),
               tags$li(HTML(paste("Open the right sidebar by clicking on", icon("gears")))),
               tags$li(HTML(paste("Select the first tab", icon("sliders")))),
               tags$li(paste("Play with the different options (enable/disable regulations,
@@ -264,7 +275,7 @@ plotBox <- function(input, output, session, diseases, help, isMobile) {
               the regulation is stronger, decreases if it is weaker")
               ),
               tags$li(
-                "Visualize changes in Ca and \\(P_i\\) fluxes:", br(),
+                "Visualize changes in \\(Ca\\) and \\(P_i\\) fluxes:", br(),
                 img(src = "rintrojs_help/red_arrow_help.svg",
                     height = "70px", width = "70px"),
                 "if the flux is decreased", ",",

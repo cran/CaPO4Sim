@@ -21,7 +21,8 @@ library(stringr)
 library(shinyFeedback)
 library(bs4Dash)
 library(dplyr)
-library(V8)
+
+library(CaPO4Sim)
 
 # Load the template components of UI
 source("patient_selector.R")
@@ -53,8 +54,17 @@ source("generate_slider_events.R")
 Sys.setenv(TZ = "Europe/Zurich")
 
 # compile the C code containing equations
-system("R CMD SHLIB compiled_core.c")
+if (.Platform$OS.type == "unix") {
+  if (!file.exists("compiled_core.so")) {
+    system("R CMD SHLIB compiled_core.c")
+  }
+} else if (.Platform$OS.type == "windows") {
+  if (!file.exists("compiled_core.dll")) {
+    system("R CMD SHLIB compiled_core.c")
+  }
+}
 dyn.load(paste("compiled_core", .Platform$dynlib.ext, sep = ""))
+
 
 #-------------------------------------------------------------------------
 #
